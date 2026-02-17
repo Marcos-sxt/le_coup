@@ -1,0 +1,126 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+export type CardType = "Duke" | "Assassin" | "Captain" | "Ambassador" | "Contessa";
+
+interface GameCardProps {
+  card: CardType;
+  faceDown?: boolean;
+  eliminated?: boolean;
+  size?: "sm" | "md" | "lg";
+}
+
+const cardConfig: Record<CardType, { color: string; icon: string; ability: string }> = {
+  Duke: {
+    color: "from-neon-gold/30 to-neon-gold/5",
+    icon: "👑",
+    ability: "Tax: Take 3 coins",
+  },
+  Assassin: {
+    color: "from-neon-red/30 to-neon-red/5",
+    icon: "🗡️",
+    ability: "Assassinate: Pay 3, kill target",
+  },
+  Captain: {
+    color: "from-primary/30 to-primary/5",
+    icon: "⚓",
+    ability: "Steal: Take 2 coins from target",
+  },
+  Ambassador: {
+    color: "from-neon-green/30 to-neon-green/5",
+    icon: "🕊️",
+    ability: "Exchange: Swap cards with deck",
+  },
+  Contessa: {
+    color: "from-secondary/30 to-secondary/5",
+    icon: "🛡️",
+    ability: "Block assassination",
+  },
+};
+
+const sizeClasses = {
+  sm: "w-16 h-24",
+  md: "w-24 h-36",
+  lg: "w-32 h-48",
+};
+
+const GameCard = ({ card, faceDown = false, eliminated = false, size = "md" }: GameCardProps) => {
+  const [hovered, setHovered] = useState(false);
+  const config = cardConfig[card];
+
+  return (
+    <motion.div
+      className={`relative ${sizeClasses[size]} cursor-pointer select-none`}
+      whileHover={!eliminated ? { y: -12, rotateY: 5 } : {}}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      style={{ perspective: 800 }}
+    >
+      <motion.div
+        className={`
+          w-full h-full rounded-lg border overflow-hidden relative
+          ${eliminated ? "opacity-40 grayscale" : ""}
+          ${faceDown
+            ? "bg-gradient-to-br from-muted to-background border-border/50"
+            : `bg-gradient-to-br ${config.color} border-primary/30`
+          }
+        `}
+        animate={hovered && !faceDown && !eliminated ? {
+          boxShadow: `0 0 25px hsl(185 100% 50% / 0.3), 0 0 50px hsl(185 100% 50% / 0.1)`,
+        } : {
+          boxShadow: `0 0 0px transparent`,
+        }}
+      >
+        {faceDown ? (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-3/4 h-3/4 border border-border/30 rounded-md flex items-center justify-center">
+              <span className="font-mono text-xs text-muted-foreground tracking-widest rotate-90">
+                ZK
+              </span>
+            </div>
+            {/* Circuit pattern */}
+            <div className="absolute inset-2 border border-dashed border-border/20 rounded" />
+          </div>
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-between p-2">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-foreground/60 self-start">
+              {card}
+            </span>
+            <span className={`${size === "lg" ? "text-4xl" : size === "md" ? "text-3xl" : "text-xl"}`}>
+              {config.icon}
+            </span>
+            {size !== "sm" && (
+              <span className="font-mono text-[8px] text-muted-foreground text-center leading-tight">
+                {config.ability}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Scanline overlay */}
+        <div className="absolute inset-0 pointer-events-none opacity-20 scanline" />
+
+        {eliminated && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-destructive font-mono font-bold text-lg rotate-12">
+              DEAD
+            </span>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Tooltip on hover */}
+      {hovered && !faceDown && !eliminated && size !== "sm" && (
+        <motion.div
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 glass-panel-strong px-3 py-1.5 z-50 whitespace-nowrap"
+        >
+          <span className="text-xs font-mono text-primary">{config.ability}</span>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+};
+
+export default GameCard;
