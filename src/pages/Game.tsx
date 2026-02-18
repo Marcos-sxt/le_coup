@@ -47,7 +47,7 @@ const Game = () => {
       <header className="relative z-10 flex items-center justify-between p-4 border-b border-border/20">
         <button onClick={() => navigate("/lobby")} className="flex items-center gap-2 cursor-pointer">
           <Zap className="w-4 h-4 text-primary" />
-          <span className="font-mono text-xs font-bold text-foreground tracking-wider">PARADIGM SHIFT</span>
+          <span className="font-mono text-xs font-bold text-foreground tracking-wider">LE COUP zk</span>
         </button>
         <div className="flex items-center gap-4">
           <span className="font-mono text-xs text-muted-foreground">PSG-7A3F</span>
