@@ -73,10 +73,10 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md" }: G
         }}
       >
         {faceDown ? (
-          <div className="w-full h-full flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
             <div className="w-3/4 h-3/4 border border-border/30 rounded-md flex items-center justify-center">
-              <span className="font-mono text-xs text-muted-foreground tracking-widest rotate-90">
-                ZK
+              <span className="font-mono text-[10px] text-muted-foreground tracking-widest rotate-90 select-none">
+                LE COUP
               </span>
             </div>
             <div className="absolute inset-2 border border-dashed border-border/20 rounded" />

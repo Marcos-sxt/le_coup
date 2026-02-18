@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Zap, Shield, Eye, Swords } from "lucide-react";
 import NeonGrid from "@/components/NeonGrid";
-import WalletButton from "@/components/WalletButton";
+import PasskeyButton from "@/components/PasskeyButton";
 
 const features = [
-  { icon: <Shield className="w-5 h-5" />, title: "Zero-Knowledge Proofs", desc: "Prove your cards without revealing them" },
-  { icon: <Eye className="w-5 h-5" />, title: "Hidden Information", desc: "Your hand stays private, cryptographically" },
-  { icon: <Swords className="w-5 h-5" />, title: "On-Chain Disputes", desc: "Fair resolution verified by Soroban" },
-  { icon: <Zap className="w-5 h-5" />, title: "Bluff & Deduce", desc: "Outsmart opponents with strategy" },
+  { icon: <Shield className="w-5 h-5" />, title: "Tamper-Proof Hands", desc: "Your cards are private — no one can peek" },
+  { icon: <Eye className="w-5 h-5" />, title: "Hidden Information", desc: "Bluff freely with cryptographic backing" },
+  { icon: <Swords className="w-5 h-5" />, title: "Fair Disputes", desc: "Challenges resolved instantly and fairly" },
+  { icon: <Zap className="w-5 h-5" />, title: "Bluff & Deduce", desc: "Outsmart opponents with pure strategy" },
 ];
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
           <Zap className="w-5 h-5 text-primary" />
           <span className="font-mono text-sm font-bold text-foreground tracking-wider">LE COUP zk</span>
         </div>
-        <WalletButton />
+        <PasskeyButton />
       </header>
 
       {/* Hero */}
@@ -39,14 +39,14 @@ const Index = () => {
           className="space-y-6 max-w-2xl"
         >
           <div className="space-y-2">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="font-mono text-xs uppercase tracking-[0.3em] text-primary/80"
-            >
-              ZK-Native Strategy on Stellar Soroban
-            </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="font-mono text-xs uppercase tracking-[0.3em] text-primary/80"
+          >
+            The Strategy Game of Bluff & Proof
+          </motion.p>
             <h1 className="text-5xl md:text-7xl font-mono font-extrabold leading-tight">
               <span className="gradient-neon-text">LE COUP</span>
               <br />
@@ -115,7 +115,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="relative z-10 text-center py-8">
         <p className="font-mono text-xs text-muted-foreground/40">
-          Built on Stellar Soroban · Powered by Groth16 ZKPs
+          Le Coup zk · Integrity-protected gameplay
         </p>
       </footer>
     </div>

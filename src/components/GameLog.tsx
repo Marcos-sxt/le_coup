@@ -11,15 +11,15 @@ interface LogEntry {
 }
 
 const mockLog: LogEntry[] = [
-  { id: 1, player: "System", action: "Game started. Stakes: 50 XLM", timestamp: "00:00", type: "system" },
-  { id: 2, player: "You", action: "Income (+1 coin)", timestamp: "00:12", type: "action" },
-  { id: 3, player: "Opponent", action: "Claimed Duke — Tax (+3 coins)", timestamp: "00:24", type: "action" },
-  { id: 4, player: "You", action: "Steal from Opponent (Captain)", timestamp: "00:38", type: "action" },
-  { id: 5, player: "Opponent", action: "⚡ CHALLENGED your Captain!", timestamp: "00:45", type: "challenge" },
-  { id: 6, player: "System", action: "ZK Proof verified — Captain confirmed ✓", timestamp: "00:48", type: "system" },
-  { id: 7, player: "Opponent", action: "Lost 1 influence (challenge failed)", timestamp: "00:49", type: "system" },
-  { id: 8, player: "Opponent", action: "Foreign Aid (+2 coins)", timestamp: "01:02", type: "action" },
-  { id: 9, player: "You", action: "Blocked Foreign Aid (Duke)", timestamp: "01:08", type: "block" },
+  { id: 1, player: "System", action: "Game started · 50 coin wager", timestamp: "00:00", type: "system" },
+  { id: 2, player: "cipher_fox", action: "Income (+1 coin)", timestamp: "00:12", type: "action" },
+  { id: 3, player: "neon_rook", action: "Claimed Duke — Tax (+3 coins)", timestamp: "00:24", type: "action" },
+  { id: 4, player: "cipher_fox", action: "Steal from neon_rook (Captain)", timestamp: "00:38", type: "action" },
+  { id: 5, player: "neon_rook", action: "⚡ CHALLENGED your Captain!", timestamp: "00:45", type: "challenge" },
+  { id: 6, player: "System", action: "Hand verified — Captain confirmed ✓", timestamp: "00:48", type: "system" },
+  { id: 7, player: "neon_rook", action: "Lost 1 influence (challenge failed)", timestamp: "00:49", type: "system" },
+  { id: 8, player: "neon_rook", action: "Foreign Aid (+2 coins)", timestamp: "01:02", type: "action" },
+  { id: 9, player: "cipher_fox", action: "Blocked Foreign Aid (Duke)", timestamp: "01:08", type: "block" },
 ];
 
 const typeColors: Record<LogEntry["type"], string> = {

@@ -6,13 +6,14 @@ import GameCard from "@/components/GameCard";
 import ActionPanel from "@/components/ActionPanel";
 import GameLog from "@/components/GameLog";
 import TurnIndicator from "@/components/TurnIndicator";
-import ZKProofModal from "@/components/ZKProofModal";
+import DisputeModal from "@/components/DisputeModal";
+import ProofBadge from "@/components/ProofBadge";
 import type { CardType } from "@/components/GameCard";
 
 const Game = () => {
   const navigate = useNavigate();
   const [isYourTurn, setIsYourTurn] = useState(true);
-  const [zkModalOpen, setZkModalOpen] = useState(false);
+  const [disputeOpen, setDisputeOpen] = useState(false);
   const [coins, setCoins] = useState(2);
   const [opponentCoins, setOpponentCoins] = useState(2);
 
@@ -31,7 +32,6 @@ const Game = () => {
     else if (action === "Income") setCoins((c) => c + 1);
     else if (action === "Foreign Aid") setCoins((c) => c + 2);
     setIsYourTurn(false);
-    // Simulate opponent turn
     setTimeout(() => setIsYourTurn(true), 2000);
   };
 
@@ -50,10 +50,13 @@ const Game = () => {
           <span className="font-mono text-xs font-bold text-foreground tracking-wider">LE COUP zk</span>
         </button>
         <div className="flex items-center gap-4">
-          <span className="font-mono text-xs text-muted-foreground">PSG-7A3F</span>
-          <span className="font-mono text-xs text-neon-gold flex items-center gap-1">
-            <Coins className="w-3 h-3" /> 50 XLM stake
-          </span>
+          {/* Room code — friendly, no contract address */}
+          <span className="font-mono text-xs text-muted-foreground">Room: COUP-7A3F</span>
+          <div className="flex items-center gap-1 font-mono text-xs text-neon-gold">
+            <Coins className="w-3 h-3" />
+            <span>50 coin wager</span>
+          </div>
+          <ProofBadge />
         </div>
       </header>
 
@@ -68,11 +71,12 @@ const Game = () => {
           >
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
+                {/* Avatar circle with username — no wallet address */}
                 <div className="w-8 h-8 rounded-full glass-panel-strong flex items-center justify-center">
-                  <span className="font-mono text-xs">OP</span>
+                  <span className="font-mono text-[10px] text-primary">NR</span>
                 </div>
                 <div>
-                  <span className="font-mono text-sm font-semibold text-foreground">GCQR...2K8P</span>
+                  <span className="font-mono text-sm font-semibold text-foreground">neon_rook</span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="font-mono text-xs text-neon-gold flex items-center gap-1">
                       <Coins className="w-3 h-3" /> {opponentCoins}
@@ -86,7 +90,7 @@ const Game = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setZkModalOpen(true)}
+                onClick={() => setDisputeOpen(true)}
                 className="px-3 py-1.5 rounded border border-secondary/40 font-mono text-xs text-secondary cursor-pointer hover:bg-secondary/10 transition-colors flex items-center gap-1.5"
               >
                 <AlertTriangle className="w-3 h-3" />
@@ -102,7 +106,7 @@ const Game = () => {
 
           {/* Center - Turn indicator */}
           <div className="flex-1 flex items-center justify-center">
-            <TurnIndicator isYourTurn={isYourTurn} />
+            <TurnIndicator isYourTurn={isYourTurn} playerName="neon_rook" />
           </div>
 
           {/* Player area */}
@@ -113,11 +117,12 @@ const Game = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
+                {/* Player avatar with username */}
                 <div className="w-8 h-8 rounded-full gradient-neon flex items-center justify-center">
-                  <span className="font-mono text-xs text-background font-bold">YOU</span>
+                  <span className="font-mono text-[10px] text-background font-bold">CF</span>
                 </div>
                 <div>
-                  <span className="font-mono text-sm font-semibold text-foreground">GDKX...F4Q7</span>
+                  <span className="font-mono text-sm font-semibold text-foreground">cipher_fox</span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="font-mono text-xs text-neon-gold flex items-center gap-1">
                       <Coins className="w-3 h-3" /> {coins}
@@ -152,10 +157,10 @@ const Game = () => {
         </div>
       </div>
 
-      {/* ZK Proof Modal */}
-      <ZKProofModal
-        isOpen={zkModalOpen}
-        onClose={() => setZkModalOpen(false)}
+      {/* Dispute Modal — abstracted from ZK details */}
+      <DisputeModal
+        isOpen={disputeOpen}
+        onClose={() => setDisputeOpen(false)}
         claimedCard="Captain"
       />
     </div>

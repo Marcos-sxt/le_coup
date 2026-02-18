@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Plus, ArrowRight, Zap, Users, Trophy } from "lucide-react";
 import NeonGrid from "@/components/NeonGrid";
-import WalletButton from "@/components/WalletButton";
+import PasskeyButton from "@/components/PasskeyButton";
+import ProofBadge from "@/components/ProofBadge";
 
 const mockGames = [
-  { id: "PSG-7A3F", creator: "GDKX...F4Q7", stake: 25, status: "waiting" },
-  { id: "PSG-B1D9", creator: "GCQR...2K8P", stake: 50, status: "waiting" },
-  { id: "PSG-E5C2", creator: "GBWM...9J1L", stake: 100, status: "in_progress" },
+  { id: "COUP-7A3F", creator: "cipher_fox", stake: 25, status: "waiting" },
+  { id: "COUP-B1D9", creator: "neon_rook", stake: 50, status: "waiting" },
+  { id: "COUP-E5C2", creator: "zero_ghost", stake: 100, status: "in_progress" },
 ];
 
 const Lobby = () => {
@@ -26,7 +27,10 @@ const Lobby = () => {
           <Zap className="w-5 h-5 text-primary" />
           <span className="font-mono text-sm font-bold text-foreground tracking-wider">LE COUP zk</span>
         </button>
-        <WalletButton />
+        <div className="flex items-center gap-3">
+          <ProofBadge />
+          <PasskeyButton />
+        </div>
       </header>
 
       <main className="relative z-10 max-w-4xl mx-auto px-6 py-8 space-y-8">
@@ -53,7 +57,7 @@ const Lobby = () => {
             <div className="space-y-3">
               <div>
                 <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
-                  Stake (XLM)
+                  Wager (coins)
                 </label>
                 <input
                   type="number"
@@ -95,7 +99,7 @@ const Lobby = () => {
                   value={gameId}
                   onChange={(e) => setGameId(e.target.value)}
                   className="w-full bg-background/60 border border-border/50 rounded-md px-4 py-2.5 font-mono text-sm text-foreground uppercase focus:outline-none focus:border-secondary/60 focus:ring-1 focus:ring-secondary/30 transition-all"
-                  placeholder="PSG-XXXX"
+                  placeholder="COUP-XXXX"
                 />
               </div>
               <motion.button
@@ -136,7 +140,7 @@ const Lobby = () => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1">
                     <Trophy className="w-3 h-3 text-neon-gold" />
-                    <span className="font-mono text-xs text-neon-gold">{game.stake} XLM</span>
+                    <span className="font-mono text-xs text-neon-gold">{game.stake} coins</span>
                   </div>
                   <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${
                     game.status === "waiting"
