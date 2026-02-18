@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import ambassadorImg from "@/assets/cards/ambassador.png";
+import assassinImg from "@/assets/cards/assassin.png";
+import captainImg from "@/assets/cards/captain.png";
+import contessaImg from "@/assets/cards/contessa.png";
+import dukeImg from "@/assets/cards/duke.png";
+
 export type CardType = "Duke" | "Assassin" | "Captain" | "Ambassador" | "Contessa";
 
 interface GameCardProps {
@@ -10,30 +16,25 @@ interface GameCardProps {
   size?: "sm" | "md" | "lg";
 }
 
-const cardConfig: Record<CardType, { color: string; icon: string; ability: string }> = {
+const cardConfig: Record<CardType, { image: string; ability: string }> = {
   Duke: {
-    color: "from-neon-gold/30 to-neon-gold/5",
-    icon: "👑",
+    image: dukeImg,
     ability: "Tax: Take 3 coins",
   },
   Assassin: {
-    color: "from-neon-red/30 to-neon-red/5",
-    icon: "🗡️",
+    image: assassinImg,
     ability: "Assassinate: Pay 3, kill target",
   },
   Captain: {
-    color: "from-primary/30 to-primary/5",
-    icon: "⚓",
+    image: captainImg,
     ability: "Steal: Take 2 coins from target",
   },
   Ambassador: {
-    color: "from-neon-green/30 to-neon-green/5",
-    icon: "🕊️",
+    image: ambassadorImg,
     ability: "Exchange: Swap cards with deck",
   },
   Contessa: {
-    color: "from-secondary/30 to-secondary/5",
-    icon: "🛡️",
+    image: contessaImg,
     ability: "Block assassination",
   },
 };
@@ -62,7 +63,7 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md" }: G
           ${eliminated ? "opacity-40 grayscale" : ""}
           ${faceDown
             ? "bg-gradient-to-br from-muted to-background border-border/50"
-            : `bg-gradient-to-br ${config.color} border-primary/30`
+            : "border-primary/30"
           }
         `}
         animate={hovered && !faceDown && !eliminated ? {
@@ -78,22 +79,21 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md" }: G
                 ZK
               </span>
             </div>
-            {/* Circuit pattern */}
             <div className="absolute inset-2 border border-dashed border-border/20 rounded" />
           </div>
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-between p-2">
-            <span className="font-mono text-[10px] uppercase tracking-wider text-foreground/60 self-start">
-              {card}
-            </span>
-            <span className={`${size === "lg" ? "text-4xl" : size === "md" ? "text-3xl" : "text-xl"}`}>
-              {config.icon}
-            </span>
-            {size !== "sm" && (
-              <span className="font-mono text-[8px] text-muted-foreground text-center leading-tight">
-                {config.ability}
+          <div className="w-full h-full relative">
+            <img
+              src={config.image}
+              alt={card}
+              className="w-full h-full object-cover"
+            />
+            {/* Card name overlay */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1.5">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-foreground font-semibold">
+                {card}
               </span>
-            )}
+            </div>
           </div>
         )}
 
@@ -101,7 +101,7 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md" }: G
         <div className="absolute inset-0 pointer-events-none opacity-20 scanline" />
 
         {eliminated && (
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center bg-background/40">
             <span className="text-destructive font-mono font-bold text-lg rotate-12">
               DEAD
             </span>

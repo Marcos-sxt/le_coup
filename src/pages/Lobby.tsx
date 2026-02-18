@@ -24,7 +24,7 @@ const Lobby = () => {
       <header className="relative z-10 flex items-center justify-between p-6">
         <button onClick={() => navigate("/")} className="flex items-center gap-2 cursor-pointer">
           <Zap className="w-5 h-5 text-primary" />
-          <span className="font-mono text-sm font-bold text-foreground tracking-wider">PARADIGM SHIFT</span>
+          <span className="font-mono text-sm font-bold text-foreground tracking-wider">LE COUP zk</span>
         </button>
         <WalletButton />
       </header>

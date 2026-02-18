@@ -25,7 +25,7 @@ const Index = () => {
       <header className="relative z-10 flex items-center justify-between p-6">
         <div className="flex items-center gap-2">
           <Zap className="w-5 h-5 text-primary" />
-          <span className="font-mono text-sm font-bold text-foreground tracking-wider">PARADIGM SHIFT</span>
+          <span className="font-mono text-sm font-bold text-foreground tracking-wider">LE COUP zk</span>
         </div>
         <WalletButton />
       </header>
@@ -48,9 +48,9 @@ const Index = () => {
               ZK-Native Strategy on Stellar Soroban
             </motion.p>
             <h1 className="text-5xl md:text-7xl font-mono font-extrabold leading-tight">
-              <span className="gradient-neon-text">PARADIGM</span>
+              <span className="gradient-neon-text">LE COUP</span>
               <br />
-              <span className="text-foreground">SHIFT</span>
+              <span className="text-foreground">zk</span>
             </h1>
           </div>
 
