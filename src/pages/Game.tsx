@@ -139,7 +139,7 @@ const Game = () => {
               {/* Player cards */}
               <div className="flex items-center gap-3">
                 {playerCards.map((c, i) => (
-                  <GameCard key={i} card={c.card} eliminated={c.eliminated} size="lg" />
+                  <GameCard key={i} card={c.card} eliminated={c.eliminated} size="lg" clickable />
                 ))}
               </div>
 
