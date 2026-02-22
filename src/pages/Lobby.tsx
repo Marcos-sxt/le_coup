@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Plus, ArrowRight, Zap, Users, Trophy } from "lucide-react";
+import { Plus, ArrowRight, Users, Trophy } from "lucide-react";
 import NeonGrid from "@/components/NeonGrid";
 import PasskeyButton from "@/components/PasskeyButton";
 import ProofBadge from "@/components/ProofBadge";
@@ -21,11 +21,12 @@ const Lobby = () => {
     <div className="relative min-h-screen overflow-hidden">
       <NeonGrid />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none" />
+      <div className="absolute inset-0 film-grain pointer-events-none" />
 
       <header className="relative z-10 flex items-center justify-between p-6">
-        <button onClick={() => navigate("/")} className="flex items-center gap-2 cursor-pointer">
-          <Zap className="w-5 h-5 text-primary" />
-          <span className="font-mono text-sm font-bold text-foreground tracking-wider">LE COUP zk</span>
+        <button onClick={() => navigate("/")} className="flex items-center gap-3 cursor-pointer">
+          <span className="text-primary text-lg">✦</span>
+          <span className="font-display text-sm font-semibold text-foreground tracking-[0.15em]">LE COUP</span>
         </button>
         <div className="flex items-center gap-3">
           <ProofBadge />
@@ -34,12 +35,9 @@ const Lobby = () => {
       </header>
 
       <main className="relative z-10 max-w-4xl mx-auto px-6 py-8 space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1 className="font-mono text-3xl font-bold text-foreground mb-2">Game Lobby</h1>
-          <p className="text-sm text-muted-foreground">Create or join a session to begin.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="font-display text-3xl font-bold text-foreground mb-2 tracking-wider">The Parlour</h1>
+          <p className="text-sm text-muted-foreground font-body italic">Create or join a session to begin your game of wits.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -52,18 +50,18 @@ const Lobby = () => {
           >
             <div className="flex items-center gap-2">
               <Plus className="w-5 h-5 text-primary" />
-              <h2 className="font-mono text-lg font-bold text-foreground">Create Game</h2>
+              <h2 className="font-display text-lg font-bold text-foreground tracking-wider">Create Game</h2>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
+                <label className="font-display text-[10px] text-muted-foreground uppercase tracking-[0.2em] block mb-1.5">
                   Wager (coins)
                 </label>
                 <input
                   type="number"
                   value={stake}
                   onChange={(e) => setStake(e.target.value)}
-                  className="w-full bg-background/60 border border-border/50 rounded-md px-4 py-2.5 font-mono text-sm text-foreground focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
+                  className="w-full bg-background/60 border border-border/50 rounded px-4 py-2.5 font-body text-sm text-foreground focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all"
                   placeholder="25"
                 />
               </div>
@@ -71,7 +69,7 @@ const Lobby = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate("/game")}
-                className="w-full py-3 rounded-md gradient-neon font-mono font-bold text-sm text-background tracking-wider cursor-pointer"
+                className="w-full py-3 rounded gradient-emerald font-display font-semibold text-sm text-primary-foreground tracking-[0.15em] cursor-pointer"
               >
                 CREATE & WAIT
               </motion.button>
@@ -87,18 +85,18 @@ const Lobby = () => {
           >
             <div className="flex items-center gap-2">
               <ArrowRight className="w-5 h-5 text-secondary" />
-              <h2 className="font-mono text-lg font-bold text-foreground">Join Game</h2>
+              <h2 className="font-display text-lg font-bold text-foreground tracking-wider">Join Game</h2>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1.5">
+                <label className="font-display text-[10px] text-muted-foreground uppercase tracking-[0.2em] block mb-1.5">
                   Game ID
                 </label>
                 <input
                   type="text"
                   value={gameId}
                   onChange={(e) => setGameId(e.target.value)}
-                  className="w-full bg-background/60 border border-border/50 rounded-md px-4 py-2.5 font-mono text-sm text-foreground uppercase focus:outline-none focus:border-secondary/60 focus:ring-1 focus:ring-secondary/30 transition-all"
+                  className="w-full bg-background/60 border border-border/50 rounded px-4 py-2.5 font-body text-sm text-foreground uppercase focus:outline-none focus:border-secondary/60 focus:ring-1 focus:ring-secondary/30 transition-all"
                   placeholder="COUP-XXXX"
                 />
               </div>
@@ -106,7 +104,7 @@ const Lobby = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => navigate("/game")}
-                className="w-full py-3 rounded-md border border-secondary/40 font-mono font-bold text-sm text-secondary tracking-wider cursor-pointer hover:bg-secondary/10 transition-colors"
+                className="w-full py-3 rounded border border-secondary/40 font-display font-semibold text-sm text-secondary tracking-[0.15em] cursor-pointer hover:bg-secondary/10 transition-colors"
               >
                 JOIN GAME
               </motion.button>
@@ -114,7 +112,7 @@ const Lobby = () => {
           </motion.div>
         </div>
 
-        {/* Active Games */}
+        {/* Open Games */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,29 +120,29 @@ const Lobby = () => {
           className="glass-panel p-6 space-y-4"
         >
           <div className="flex items-center gap-2">
-            <Users className="w-5 h-5 text-neon-gold" />
-            <h2 className="font-mono text-lg font-bold text-foreground">Open Games</h2>
+            <Users className="w-5 h-5 text-accent" />
+            <h2 className="font-display text-lg font-bold text-foreground tracking-wider">Open Tables</h2>
           </div>
           <div className="space-y-2">
             {mockGames.map((game) => (
               <motion.div
                 key={game.id}
-                whileHover={{ backgroundColor: "hsl(240, 10%, 12%)" }}
-                className="flex items-center justify-between p-3 rounded-md border border-border/20 transition-colors cursor-pointer"
+                whileHover={{ backgroundColor: "hsl(150, 15%, 9%)" }}
+                className="flex items-center justify-between p-3 rounded border border-border/20 transition-colors cursor-pointer"
                 onClick={() => navigate("/game")}
               >
                 <div className="flex items-center gap-4">
-                  <span className="font-mono text-sm font-bold text-primary">{game.id}</span>
-                  <span className="font-mono text-xs text-muted-foreground">{game.creator}</span>
+                  <span className="font-display text-sm font-bold text-primary tracking-wider">{game.id}</span>
+                  <span className="font-body text-xs text-muted-foreground italic">{game.creator}</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1">
-                    <Trophy className="w-3 h-3 text-neon-gold" />
-                    <span className="font-mono text-xs text-neon-gold">{game.stake} coins</span>
+                    <Trophy className="w-3 h-3 text-accent" />
+                    <span className="font-body text-xs text-accent">{game.stake} coins</span>
                   </div>
-                  <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                  <span className={`font-display text-[9px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full border ${
                     game.status === "waiting"
-                      ? "text-neon-green border-neon-green/30"
+                      ? "text-primary border-primary/30"
                       : "text-muted-foreground border-muted-foreground/30"
                   }`}>
                     {game.status === "waiting" ? "Open" : "Live"}
