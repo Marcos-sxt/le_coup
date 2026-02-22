@@ -30,35 +30,35 @@ const cardConfig: Record<CardType, {
     ability: "Tax",
     description: "Receba 3 moedas do tesouro. Ninguém pode bloquear esta ação.",
     icon: <Coins className="w-5 h-5" />,
-    color: "hsl(45 100% 55%)",
+    color: "hsl(80 35% 42%)",
   },
   Assassin: {
     image: assassinImg,
     ability: "Assassinate",
     description: "Pague 3 moedas para eliminar uma influência do oponente. Pode ser bloqueado pela Contessa.",
     icon: <Sword className="w-5 h-5" />,
-    color: "hsl(0 85% 55%)",
+    color: "hsl(0 65% 42%)",
   },
   Captain: {
     image: captainImg,
     ability: "Steal",
     description: "Roube 2 moedas de qualquer jogador. Pode ser bloqueado pelo Embaixador ou por outro Capitão.",
     icon: <Coins className="w-5 h-5" />,
-    color: "hsl(185 100% 50%)",
+    color: "hsl(145 45% 32%)",
   },
   Ambassador: {
     image: ambassadorImg,
     ability: "Exchange",
     description: "Troque uma ou ambas as suas cartas com o baralho. Também pode bloquear roubos do Capitão.",
     icon: <RefreshCw className="w-5 h-5" />,
-    color: "hsl(120 100% 40%)",
+    color: "hsl(140 50% 40%)",
   },
   Contessa: {
     image: contessaImg,
     ability: "Block Assassination",
     description: "Você não possui ação própria, mas pode bloquear qualquer tentativa de assassinato contra você.",
     icon: <Shield className="w-5 h-5" />,
-    color: "hsl(300 100% 50%)",
+    color: "hsl(275 50% 38%)",
   },
 };
 
@@ -79,7 +79,7 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md", cli
     <>
       <motion.div
         className={`relative ${sizeClasses[size]} select-none ${canClick ? "cursor-pointer" : "cursor-default"}`}
-        whileHover={!eliminated ? { y: -12, rotateY: 5 } : {}}
+        whileHover={!eliminated ? { y: -10, rotateY: 3 } : {}}
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
         onClick={() => canClick && setModalOpen(true)}
@@ -87,27 +87,27 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md", cli
       >
         <motion.div
           className={`
-            w-full h-full rounded-lg border overflow-hidden relative
+            w-full h-full rounded border overflow-hidden relative
             ${eliminated ? "opacity-40 grayscale" : ""}
             ${faceDown
               ? "bg-gradient-to-br from-muted to-background border-border/50"
-              : "border-primary/30"
+              : "border-primary/25"
             }
           `}
           animate={hovered && !faceDown && !eliminated ? {
-            boxShadow: `0 0 25px hsl(185 100% 50% / 0.3), 0 0 50px hsl(185 100% 50% / 0.1)`,
+            boxShadow: `0 0 20px hsl(145 45% 32% / 0.25), 0 0 40px hsl(145 45% 32% / 0.08)`,
           } : {
             boxShadow: `0 0 0px transparent`,
           }}
         >
           {faceDown ? (
             <div className="w-full h-full flex items-center justify-center">
-              <div className="w-3/4 h-3/4 border border-border/30 rounded-md flex items-center justify-center">
-                <span className="font-mono text-[10px] text-muted-foreground tracking-widest rotate-90 select-none">
+              <div className="w-3/4 h-3/4 border border-border/30 rounded flex items-center justify-center">
+                <span className="font-display text-[8px] text-muted-foreground tracking-[0.2em] rotate-90 select-none">
                   LE COUP
                 </span>
               </div>
-              <div className="absolute inset-2 border border-dashed border-border/20 rounded" />
+              <div className="absolute inset-2 border border-dashed border-border/15 rounded" />
             </div>
           ) : (
             <div className="w-full h-full relative">
@@ -117,18 +117,17 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md", cli
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1.5">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-foreground font-semibold">
+                <span className="font-display text-[9px] uppercase tracking-[0.15em] text-foreground font-semibold">
                   {card}
                 </span>
               </div>
-              {/* Click hint */}
               {canClick && hovered && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="absolute inset-0 bg-primary/10 flex items-center justify-center"
                 >
-                  <span className="font-mono text-[9px] text-primary tracking-widest uppercase bg-background/60 px-2 py-1 rounded">
+                  <span className="font-display text-[8px] text-primary tracking-[0.2em] uppercase bg-background/60 px-2 py-1 rounded">
                     ver carta
                   </span>
                 </motion.div>
@@ -136,26 +135,22 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md", cli
             </div>
           )}
 
-          {/* Scanline overlay */}
-          <div className="absolute inset-0 pointer-events-none opacity-20 scanline" />
-
           {eliminated && (
             <div className="absolute inset-0 flex items-center justify-center bg-background/40">
-              <span className="text-destructive font-mono font-bold text-lg rotate-12">
+              <span className="text-destructive font-display font-bold text-lg rotate-12 tracking-wider">
                 DEAD
               </span>
             </div>
           )}
         </motion.div>
 
-        {/* Tooltip on hover */}
         {hovered && !faceDown && !eliminated && size !== "sm" && !canClick && (
           <motion.div
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             className="absolute -bottom-10 left-1/2 -translate-x-1/2 glass-panel-strong px-3 py-1.5 z-50 whitespace-nowrap"
           >
-            <span className="text-xs font-mono text-primary">{config.ability}</span>
+            <span className="text-xs font-display text-primary tracking-wider">{config.ability}</span>
           </motion.div>
         )}
       </motion.div>
@@ -170,65 +165,55 @@ const GameCard = ({ card, faceDown = false, eliminated = false, size = "md", cli
             className="fixed inset-0 z-[100] flex items-center justify-center p-6"
             onClick={() => setModalOpen(false)}
           >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-background/85 backdrop-blur-md" />
+            <div className="absolute inset-0 bg-background/90 backdrop-blur-md" />
 
-            {/* Card content */}
             <motion.div
               initial={{ scale: 0.7, opacity: 0, y: 40 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.7, opacity: 0, y: 40 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              transition={{ type: "spring", stiffness: 280, damping: 24 }}
               className="relative z-10 flex flex-col sm:flex-row gap-6 items-center max-w-lg w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Card image */}
               <motion.div
-                className="relative w-48 h-72 rounded-xl overflow-hidden border-2 flex-shrink-0"
-                style={{ borderColor: config.color, boxShadow: `0 0 40px ${config.color}55, 0 0 80px ${config.color}22` }}
+                className="relative w-48 h-72 rounded overflow-hidden border-2 flex-shrink-0"
+                style={{ borderColor: config.color, boxShadow: `0 0 30px ${config.color}44, 0 0 60px ${config.color}18` }}
               >
                 <img src={config.image} alt={card} className="w-full h-full object-cover" />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-3">
-                  <span className="font-mono text-sm uppercase tracking-widest text-foreground font-bold">
+                  <span className="font-display text-sm uppercase tracking-[0.15em] text-foreground font-bold">
                     {card}
                   </span>
                 </div>
               </motion.div>
 
-              {/* Card info */}
               <div className="flex flex-col gap-4 flex-1">
-                {/* Header */}
                 <div>
                   <div className="flex items-center gap-2 mb-1" style={{ color: config.color }}>
                     {config.icon}
-                    <span className="font-mono text-xs uppercase tracking-widest opacity-70">Habilidade</span>
+                    <span className="font-display text-[10px] uppercase tracking-[0.2em] opacity-70">Habilidade</span>
                   </div>
-                  <h2 className="font-mono text-2xl font-bold text-foreground">{config.ability}</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground tracking-wider">{config.ability}</h2>
                 </div>
 
-                {/* Divider */}
-                <div className="h-px w-full" style={{ background: `${config.color}44` }} />
+                <div className="h-px w-full" style={{ background: `${config.color}33` }} />
 
-                {/* Description */}
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+                <p className="font-body text-sm text-muted-foreground leading-relaxed italic">
                   {config.description}
                 </p>
 
-                {/* Card name badge */}
                 <div
-                  className="self-start px-3 py-1.5 rounded-full font-mono text-xs font-semibold tracking-wider"
-                  style={{ background: `${config.color}22`, color: config.color, border: `1px solid ${config.color}44` }}
+                  className="self-start px-3 py-1.5 rounded font-display text-[10px] font-semibold tracking-[0.15em]"
+                  style={{ background: `${config.color}18`, color: config.color, border: `1px solid ${config.color}33` }}
                 >
                   {card.toUpperCase()}
                 </div>
 
-                {/* Close hint */}
-                <p className="font-mono text-[10px] text-muted-foreground/50 tracking-widest uppercase">
+                <p className="font-body text-[10px] text-muted-foreground/50 tracking-wider italic">
                   clique fora para fechar
                 </p>
               </div>
 
-              {/* Close button */}
               <button
                 onClick={() => setModalOpen(false)}
                 className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"

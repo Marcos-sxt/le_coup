@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Fingerprint, CheckCircle, User } from "lucide-react";
+import { motion } from "framer-motion";
+import { Fingerprint, User } from "lucide-react";
 
 interface PasskeyButtonProps {
   onConnect?: (username: string) => void;
@@ -23,11 +23,11 @@ const PasskeyButton = ({ onConnect }: PasskeyButtonProps) => {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="glass-panel px-4 py-2 flex items-center gap-3 neon-glow-cyan"
+        className="glass-panel px-4 py-2 flex items-center gap-3 glow-emerald"
       >
-        <div className="w-2 h-2 rounded-full bg-neon-green animate-pulse-neon" />
+        <div className="w-2 h-2 rounded-full bg-primary animate-flicker" />
         <User className="w-4 h-4 text-primary" />
-        <span className="font-mono text-sm text-primary">{username}</span>
+        <span className="font-display text-xs text-primary tracking-wider">{username}</span>
       </motion.div>
     );
   }
@@ -45,21 +45,21 @@ const PasskeyButton = ({ onConnect }: PasskeyButtonProps) => {
         >
           <Fingerprint className="w-5 h-5 text-primary" />
         </motion.div>
-        <span className="font-mono text-sm text-primary">Authenticating...</span>
+        <span className="font-body text-sm text-primary italic">Authenticating...</span>
       </motion.div>
     );
   }
 
   return (
     <motion.button
-      whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(185 100% 50% / 0.4)" }}
+      whileHover={{ scale: 1.05, boxShadow: "0 0 25px hsl(145 45% 32% / 0.3)" }}
       whileTap={{ scale: 0.95 }}
       onClick={handleConnect}
       className="glass-panel px-6 py-3 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:border-primary/60 group"
     >
-      <Fingerprint className="w-5 h-5 text-primary group-hover:drop-shadow-[0_0_8px_hsl(185_100%_50%/0.8)]" />
-      <span className="font-mono text-sm font-semibold text-primary">
-        Sign In with Passkey
+      <Fingerprint className="w-5 h-5 text-primary group-hover:drop-shadow-[0_0_6px_hsl(145_45%_32%/0.6)]" />
+      <span className="font-display text-xs font-semibold text-primary tracking-[0.1em]">
+        Sign In
       </span>
     </motion.button>
   );

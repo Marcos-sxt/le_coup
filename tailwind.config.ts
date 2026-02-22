@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Cinzel', 'serif'],
+        body: ['Crimson Text', 'serif'],
+        serif: ['EB Garamond', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,13 +52,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        neon: {
-          cyan: "hsl(var(--neon-cyan))",
-          magenta: "hsl(var(--neon-magenta))",
-          gold: "hsl(var(--neon-gold))",
-          green: "hsl(var(--neon-green))",
-          red: "hsl(var(--neon-red))",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          glow: "hsl(var(--emerald-glow))",
+          dim: "hsl(var(--emerald-dim))",
         },
+        pact: "hsl(var(--pact-purple))",
+        blood: "hsl(var(--blood-red))",
+        parchment: "hsl(var(--parchment))",
+        fog: "hsl(var(--fog))",
+        ink: "hsl(var(--ink))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -83,38 +87,37 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "pulse-neon": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
+        "fog-drift": {
+          "0%": { transform: "translateX(-10%) translateY(0)" },
+          "50%": { transform: "translateX(10%) translateY(-5px)" },
+          "100%": { transform: "translateX(-10%) translateY(0)" },
         },
-        "grid-move": {
-          "0%": { transform: "translateY(0)" },
-          "100%": { transform: "translateY(40px)" },
+        "flicker": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.85" },
+          "25%, 75%": { opacity: "0.92" },
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
-        "glitch": {
-          "0%, 100%": { transform: "translate(0)" },
-          "20%": { transform: "translate(-2px, 2px)" },
-          "40%": { transform: "translate(-2px, -2px)" },
-          "60%": { transform: "translate(2px, 2px)" },
-          "80%": { transform: "translate(2px, -2px)" },
+        "seal-rotate": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
-        "data-stream": {
-          "0%": { backgroundPosition: "0% 0%" },
-          "100%": { backgroundPosition: "0% 100%" },
+        "vignette-pulse": {
+          "0%, 100%": { opacity: "0.8" },
+          "50%": { opacity: "1" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-neon": "pulse-neon 2s ease-in-out infinite",
-        "grid-move": "grid-move 3s linear infinite",
-        "float": "float 3s ease-in-out infinite",
-        "glitch": "glitch 0.3s ease-in-out",
-        "data-stream": "data-stream 20s linear infinite",
+        "fog-drift": "fog-drift 12s ease-in-out infinite",
+        "flicker": "flicker 4s ease-in-out infinite",
+        "float": "float 4s ease-in-out infinite",
+        "seal-rotate": "seal-rotate 30s linear infinite",
+        "vignette-pulse": "vignette-pulse 6s ease-in-out infinite",
       },
     },
   },
