@@ -54,3 +54,6 @@ This project uses **X-Ray (Protocol 25)** host functions for Groth16 verificatio
 
 ---
 Built with 💚 for the Stellar Hackathon.
+
+## 🎥 Video Demo
+[Le Coup zk - Hackathon Demo](https://www.youtube.com/watch?v=B7Ay-k1JwJw&feature=youtu.be)
