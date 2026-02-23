@@ -9,7 +9,7 @@ interface ZKProofModalProps {
   isDefender?: boolean;
 }
 
-const ZKProofModal = ({ isOpen, onClose, claimedCard = "Captain", isDefender = true }: ZKProofModalProps) => {
+const ZKProofModal = ({ isOpen, onClose, claimedCard = "CROW", isDefender = true }: ZKProofModalProps) => {
   const [stage, setStage] = useState<"generating" | "verifying" | "success" | "fail">("generating");
   const [progress, setProgress] = useState(0);
   const [matrixChars, setMatrixChars] = useState<string[]>([]);

@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# 🃏 Le Coup | ZK Bluffing on Stellar
 
-## Project info
+A cryptographic rethink of the classic "Coup" board game, built for the **Stellar Hacks: ZK Gaming** hackathon. 
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Le Coup leverages **Zero-Knowledge Proofs (ZKPs)** and **Stellar Protocol 25 (X-Ray)** to create a trustless, on-chain environment where players can bluff about their hidden cards, and the contract can verify the truth through cryptographic host functions.
 
-## How can I edit this code?
+## 🚀 Vision
+In traditional digital card games, the server knows everything. In Le Coup:
+- Players maintain **Self-Custody** of their hidden cards through local state.
+- **ZK Proofs** allow you to prove "I have the Lion card" without revealing your other influence.
+- **Protocol 25 (X-Ray)** host functions verify these proofs on-chain during disputes, ensuring honesty without sacrificing privacy.
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
+- **Smart Contract:** Soroban (Rust) with [Protocol 25](https://stellar.org/blog/developers/stellar-protocol-25-x-ray) BN254 host functions.
+- **ZK Circuits:** Circom (Groth16 on BN254).
+- **Proving Engine:** `snarkjs` (Browser-side proving).
+- **Frontend:** React + Vite + Tailwind CSS.
+- **Identity:** `SmartAccountKit` (Passkey-based Smart Wallets).
 
-**Use Lovable**
+## 💎 Features
+- **ZK Action Proofs:** Prove possession of cards for `Tax`, `Steal`, `Exchange`, and `Reveal` actions.
+- **Dispute Resolution:** Triggered on-chain when a player challenges a bluff.
+- **ZK Audit Pack:** A post-game terminal that reveals the secret salt and cryptographically verifies the entire match history.
+- **WebAuthn Integration:** Zero-seedphrase onboarding through Passkeys and Smart Accounts.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🏃 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- [Bun](https://bun.sh/) (or Node.js)
+- Stellar Freighter Wallet or Passkey-capable browser.
 
-**Use your preferred IDE**
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Marcos-sxt/le_coup.git
+cd le_coup/zk-bluff
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Install dependencies
+bun install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Run the development server
+bun run dev
 ```
 
-**Edit a file directly in GitHub**
+### Protocol 25 Note
+This project uses **X-Ray (Protocol 25)** host functions for Groth16 verification. 
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🗺️ Roadmap
+- [x] ZK Circuit for hand verification.
+- [x] snarkjs integration in the browser.
+- [x] Protocol 25 on-chain dispute resolution.
+- [x] ZK Audit Pack & Salt revelation.
+- [ ] Multiplayer P2P via encrypted state channels.
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+Built with 💚 for the Stellar Hackathon.

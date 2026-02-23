@@ -25,7 +25,7 @@ const Index = () => {
       <div className="absolute inset-0 film-grain pointer-events-none" />
 
       {/* Top nav */}
-      <header className="relative z-10 flex items-center justify-between p-6">
+      <header className="relative z-50 flex items-center justify-between p-6">
         <div className="flex items-center gap-3">
           <span className="text-primary text-lg">✦</span>
           <span className="font-display text-sm font-semibold text-foreground tracking-[0.15em]">LE COUP</span>

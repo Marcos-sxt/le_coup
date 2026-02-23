@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Coins, Shield, Skull, ArrowRightLeft, Ban, Swords } from "lucide-react";
+import { Coins, Shield, Skull, ArrowRightLeft, Ban, Swords, Eye, Target } from "lucide-react";
 
 interface Action {
   name: string;
@@ -13,11 +13,12 @@ interface Action {
 const actions: Action[] = [
   { name: "Income", icon: <Coins className="w-4 h-4" />, description: "+1 coin", colorClass: "border-foreground/15 hover:border-foreground/30" },
   { name: "Foreign Aid", icon: <Coins className="w-4 h-4" />, description: "+2 coins", colorClass: "border-foreground/15 hover:border-foreground/30" },
-  { name: "Tax", icon: <Coins className="w-4 h-4" />, character: "Duke", cost: 0, description: "+3 coins", colorClass: "border-accent/25 hover:border-accent/50" },
-  { name: "Steal", icon: <ArrowRightLeft className="w-4 h-4" />, character: "Captain", cost: 0, description: "Take 2 from target", colorClass: "border-primary/25 hover:border-primary/50" },
-  { name: "Assassinate", icon: <Skull className="w-4 h-4" />, character: "Assassin", cost: 3, description: "Kill target influence", colorClass: "border-destructive/25 hover:border-destructive/50" },
-  { name: "Exchange", icon: <Shield className="w-4 h-4" />, character: "Ambassador", cost: 0, description: "Swap with deck", colorClass: "border-emerald-glow/25 hover:border-emerald-glow/50" },
+  { name: "Tax", icon: <Coins className="w-4 h-4" />, character: "LION", cost: 0, description: "+3 coins", colorClass: "border-accent/25 hover:border-accent/50" },
+  { name: "Steal", icon: <ArrowRightLeft className="w-4 h-4" />, character: "CROW", cost: 0, description: "Take 2 from target", colorClass: "border-primary/25 hover:border-primary/50" },
+  { name: "Reveal", icon: <Eye className="w-4 h-4" />, character: "SPIDER", cost: 3, description: "Reveal target 3 turns", colorClass: "border-destructive/25 hover:border-destructive/50" },
+  { name: "Exchange", icon: <Shield className="w-4 h-4" />, character: "CHAMELEON", cost: 0, description: "Swap with deck", colorClass: "border-emerald-glow/25 hover:border-emerald-glow/50" },
   { name: "Coup", icon: <Swords className="w-4 h-4" />, cost: 7, description: "Force kill (unstoppable)", colorClass: "border-secondary/25 hover:border-secondary/50" },
+  { name: "Coup de Grace", icon: <Target className="w-4 h-4" />, description: "Guess both cards to win", colorClass: "border-purple-500/25 hover:border-purple-500/50" },
 ];
 
 interface ActionPanelProps {

@@ -23,7 +23,7 @@ const Lobby = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none" />
       <div className="absolute inset-0 film-grain pointer-events-none" />
 
-      <header className="relative z-10 flex items-center justify-between p-6">
+      <header className="relative z-50 flex items-center justify-between p-6">
         <button onClick={() => navigate("/")} className="flex items-center gap-3 cursor-pointer">
           <span className="text-primary text-lg">✦</span>
           <span className="font-display text-sm font-semibold text-foreground tracking-[0.15em]">LE COUP</span>
@@ -140,11 +140,10 @@ const Lobby = () => {
                     <Trophy className="w-3 h-3 text-accent" />
                     <span className="font-body text-xs text-accent">{game.stake} coins</span>
                   </div>
-                  <span className={`font-display text-[9px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full border ${
-                    game.status === "waiting"
+                  <span className={`font-display text-[9px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full border ${game.status === "waiting"
                       ? "text-primary border-primary/30"
                       : "text-muted-foreground border-muted-foreground/30"
-                  }`}>
+                    }`}>
                     {game.status === "waiting" ? "Open" : "Live"}
                   </span>
                 </div>
