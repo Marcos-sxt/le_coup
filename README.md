@@ -1,4 +1,4 @@
-# 🃏 Le Coup | ZK Bluffing on Stellar
+![Le Coup](src/assets/le_coup.png)
 
 A cryptographic rethink of the classic "Coup" board game, built for the **Stellar Hacks: ZK Gaming** hackathon. 
 
