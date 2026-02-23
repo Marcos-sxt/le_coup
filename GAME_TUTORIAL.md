@@ -16,14 +16,14 @@ On your turn, you may choose one of the following actions. Some actions explicit
 ### Standard Actions (No card required)
 *These actions are available to anyone and cannot be challenged for lying.*
 - **💰 Income:** Take 1 coin from the bank. (Cannot be blocked)
-- **🤝 Foreign Aid:** Take 2 coins from the bank. (Can be blocked by the Duke)
+- **🤝 Foreign Aid:** Take 2 coins from the bank. (Can be blocked by the Lion)
 - **🗡️ Coup:** Pay 7 coins to launch a Coup. Target opponent loses 1 life immediately. (Cannot be blocked or challenged)
 
 ### Character Actions (Card required... or bluff!)
 *If you declare one of these actions, you are claiming to hold the corresponding card.*
-- **👑 Tax (Duke):** Take 3 coins from the bank.
-- **🔪 Assassinate (Assassin):** Pay 3 coins. Target opponent loses 1 life. *(Can be blocked by the Contessa)*
-- **🏴‍☠️ Steal (Captain):** Take 2 coins from the target opponent. *(Can be blocked by another Captain or the Ambassador)*
+- **👑 Tax (Lion / Duke):** Take 3 coins from the bank.
+- **🔪 Assassinate (Spider / Assassin):** Pay 3 coins. Target opponent loses 1 life. *(Can be blocked by the Snake)*
+- **🏴‍☠️ Steal (Crow / Captain):** Take 2 coins from the target opponent. *(Can be blocked by another Crow or the Chameleon)*
 
 ---
 
@@ -39,7 +39,7 @@ If you claim to play a character action (like Tax) and an opponent doesn't belie
 - *Everything is verified securely by the Soroban smart contract using X-Ray (Stellar Protocol 25) BN254 host functions.*
 
 ### 2. 🌀 The Paradigm Shift (Exchange)
-Players can perform a "Paradigm Shift" (inspired by the Ambassador action) to secretly swap a card in their hand for a new one.
+Players can perform a "Paradigm Shift" (inspired by the Chameleon / Ambassador action) to secretly swap a card in their hand for a new one.
 - You generate a **ZK Proof** proving that your new hidden hand correctly transitions from your old hand (changing exactly 1 card to a valid new card).
 - You prove this *without ever revealing which card you swapped or what your new card is!*
 - The smart contract mathematically verifies the proof before accepting your new locked commitment.
